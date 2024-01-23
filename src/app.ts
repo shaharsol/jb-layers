@@ -1,7 +1,6 @@
 process.env["NODE_CONFIG_DIR"] = __dirname + "/config/";
 import express from 'express';
 import productsRouter from './routes/products'
-import exp from 'constants';
 
 const server = express();
 
