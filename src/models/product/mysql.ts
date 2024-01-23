@@ -1,8 +1,9 @@
 import { OkPacketParams } from 'mysql2';
 import ProductDTO from './dto'
 import query from '../../db/mysql'
+import { ProductModel } from './factory';
 
-class Product {
+class Product implements ProductModel{
     public async getAll(): Promise<ProductDTO[]> {
         const data: ProductDTO[] = await query(`
             select  ProductID as id,
