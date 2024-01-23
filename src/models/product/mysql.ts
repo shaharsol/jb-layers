@@ -1,14 +1,10 @@
 import { OkPacketParams } from 'mysql2';
 import ProductDTO from './dto'
+import query from '../../db/mysql'
 
-export default class Product {
-    public execute: Function;
-    public constructor(execute: Function) {
-        this.execute = execute;
-    }
-
+class Product {
     public async getAll(): Promise<ProductDTO[]> {
-        const data: ProductDTO[] = await this.execute(`
+        const data: ProductDTO[] = await query(`
             select  ProductID as id,
                     ProductName as name,
                     UnitPrice as price,
@@ -19,7 +15,7 @@ export default class Product {
     }
 
     public async getOne(id: number): Promise<ProductDTO> {
-        const data: ProductDTO = await this.execute(`
+        const data: ProductDTO = await query(`
             select  ProductID as id,
                     ProductName as name,
                     UnitPrice as price,
@@ -31,9 +27,12 @@ export default class Product {
     }
 
     public async insert(product: ProductDTO): Promise<ProductDTO> {
-        const packet: OkPacketParams = await this.execute(`
+        const packet: OkPacketParams = await query(`
             insert into products(ProductName, UnitPrice, UnitsInStock) values(?,?,?)
         `, [product.name, product.price, product.stock])
         return this.getOne(packet.insertId);
     }
 }
+
+const product = new Product();
+export default product;

@@ -3,14 +3,6 @@ import { promisify } from 'util';
 import {Request, Response, NextFunction } from 'express';
 import config from 'config'
 
-declare global {
-    namespace Express {
-      interface Request {
-        execute: Function
-      }
-    }
-}
-
 const pool = mysql.createPool({
     host: config.get<string>('mysql.host'),
     user: config.get<string>('mysql.user'),
@@ -24,8 +16,5 @@ const pool = mysql.createPool({
 });
 
 const query = promisify(pool.query).bind(pool);
+export default query
 
-export default (req: Request, res: Response, next: NextFunction) => {
-    req.execute = query;
-    next();
-}
