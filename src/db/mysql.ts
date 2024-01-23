@@ -8,11 +8,11 @@ const pool = mysql.createPool({
     user: config.get<string>('mysql.user'),
     password: config.get<string>('mysql.password'),
     database: config.get<string>('mysql.database'),
-    waitForConnections: true,
-    connectionLimit: 10,
-    maxIdle: 10,
-    idleTimeout: 60000,
-    queueLimit: 0,
+    // waitForConnections: true,
+    // connectionLimit: 10,
+    // maxIdle: 10,
+    // idleTimeout: 60000,
+    // queueLimit: 0,
 });
 
 const query = promisify(pool.query).bind(pool);
