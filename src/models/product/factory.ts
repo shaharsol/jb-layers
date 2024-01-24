@@ -1,12 +1,7 @@
-import Product from "./dto";
+import Model from "./model";
 import product from "./mysql";
 
-export interface ProductModel {
-    getAll(): Promise<Product[]>;
-    getOne(id: number): Promise<Product>;
-    insert(product: Product): Promise<Product>;
-}
 
-export function getProductModel(): ProductModel {
+export default function getModel(): Model {
     return product;
 }

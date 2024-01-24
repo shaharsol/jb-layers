@@ -1,11 +1,11 @@
 import { OkPacketParams } from 'mysql2';
-import ProductDTO from './dto'
+import DTO from './dto'
 import query from '../../db/mysql'
-import { ProductModel } from './factory';
+import Model from './model';
 
-class Product implements ProductModel{
-    public async getAll(): Promise<ProductDTO[]> {
-        const data: ProductDTO[] = await query(`
+class Product implements Model{
+    public async getAll(): Promise<DTO[]> {
+        const data: DTO[] = await query(`
             select  ProductID as id,
                     ProductName as name,
                     UnitPrice as price,
@@ -15,8 +15,8 @@ class Product implements ProductModel{
         return data;
     }
 
-    public async getOne(id: number): Promise<ProductDTO> {
-        const data: ProductDTO = await query(`
+    public async getOne(id: number): Promise<DTO> {
+        const data: DTO = await query(`
             select  ProductID as id,
                     ProductName as name,
                     UnitPrice as price,
@@ -27,7 +27,7 @@ class Product implements ProductModel{
         return data;
     }
 
-    public async insert(product: ProductDTO): Promise<ProductDTO> {
+    public async insert(product: DTO): Promise<DTO> {
         const packet: OkPacketParams = await query(`
             insert into products(ProductName, UnitPrice, UnitsInStock) values(?,?,?)
         `, [product.name, product.price, product.stock])

@@ -1,4 +1,4 @@
-export default interface Product {
+export default interface DTO {
     id: number;
     name: string;
     price: number;
