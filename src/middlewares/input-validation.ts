@@ -1,6 +1,7 @@
 import joi from "joi";
 import { Request, Response, NextFunction } from 'express'
 import createHttpError, { BadRequest, InternalServerError } from "http-errors";
+import { ReasonPhrases } from "http-status-codes";
 
 const middleware = (validator: joi.ObjectSchema) => async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -11,7 +12,7 @@ const middleware = (validator: joi.ObjectSchema) => async (req: Request, res: Re
         if (err.isJoi) {
             return next(createHttpError(BadRequest(err.message)) )
         }
-        return next(createHttpError(InternalServerError()));
+        return next(createHttpError(InternalServerError(ReasonPhrases.INTERNAL_SERVER_ERROR)));
     }
   };
 
