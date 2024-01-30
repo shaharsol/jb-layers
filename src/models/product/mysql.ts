@@ -24,7 +24,7 @@ class Product implements Model{
             from    products
             where   ProductID = ?
         `, [ id ])
-        return data;
+        return data[0];
     }
 
     public async insert(product: DTO): Promise<DTO> {
