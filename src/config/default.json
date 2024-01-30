@@ -1,4 +1,7 @@
 {
+    "app": {
+        "port": 8080
+    },
     "mysql": {
         "host": "localhost",
         "user": "shaharsol",
