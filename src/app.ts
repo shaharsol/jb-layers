@@ -5,6 +5,7 @@
 process.env["NODE_CONFIG_DIR"] = __dirname + "/config/";
 import express from 'express';
 import productsRouter from './routes/products'
+import categoriesRouter from './routes/categories'
 import authRouter from './routes/auth'
 import morgan from 'morgan';
 import config from 'config';
@@ -16,6 +17,7 @@ server.use(morgan('dev'))
 server.use(express.json())
 server.use('/auth', authRouter)
 server.use('/products', productsRouter)
+server.use('/categories', categoriesRouter)
 
 server.use(notFound)
 server.use(errorHandler)
