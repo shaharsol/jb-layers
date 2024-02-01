@@ -5,7 +5,9 @@ import { ReasonPhrases } from "http-status-codes";
 
 const middleware = (validator: joi.ObjectSchema) => async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const validated = await validator.validateAsync(req.body);
+        const validated = await validator.validateAsync(req.body, {
+            abortEarly: false
+        });
         req.body = validated;
         return next();
     } catch (err) {
