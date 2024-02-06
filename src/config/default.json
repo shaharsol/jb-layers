@@ -8,5 +8,12 @@
         "user": "shaharsol",
         "password": "password",
         "database": "northwind"
+    },
+    "s3": {
+        "accessKeyId": "na",
+        "secretAccessKey": "na",
+        "region": "us-east-1",
+        "endpoint": "http://localhost:4566",
+        "bucket": "test.shaharsol.com"
     }
 }

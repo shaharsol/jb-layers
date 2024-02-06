@@ -38,7 +38,7 @@ class Auth implements Model{
     
         // Return token:
         return token;
-    }
+    } 
 
     public async signup(user: UserDTO): Promise<string> {
         const { username, password, firstName, lastName } = user;

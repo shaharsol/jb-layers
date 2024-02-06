@@ -22,6 +22,7 @@ export async function getOne(req: Request, res: Response, next: NextFunction) {
 }
 export async function insert(req: Request, res: Response, next: NextFunction) {
     try {
+        
         const newProduct = await getModel().insert(req.body as DTO);
         res.json(newProduct)
     } catch (err) {

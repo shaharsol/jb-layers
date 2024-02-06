@@ -9,7 +9,8 @@ class Product implements Model{
             select  ProductID as id,
                     ProductName as name,
                     UnitPrice as price,
-                    UnitsInStock as stock
+                    UnitsInStock as stock,
+                    ImageName as imageName
             from    products
         `)
         return data;
@@ -20,7 +21,8 @@ class Product implements Model{
             select  ProductID as id,
                     ProductName as name,
                     UnitPrice as price,
-                    UnitsInStock as stock
+                    UnitsInStock as stock,
+                    ImageName as imageName
             from    products
             where   ProductID = ?
         `, [ id ])
@@ -29,8 +31,8 @@ class Product implements Model{
 
     public async insert(product: DTO): Promise<DTO> {
         const packet: OkPacketParams = await query(`
-            insert into products(ProductName, UnitPrice, UnitsInStock) values(?,?,?)
-        `, [product.name, product.price, product.stock])
+            insert into products(ProductName, UnitPrice, UnitsInStock, imageName) values(?,?,?,?)
+        `, [product.name, product.price, product.stock, product.imageName])
         return this.getOne(packet.insertId);
     }
 }
