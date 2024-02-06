@@ -3,6 +3,7 @@ import { S3 } from 'aws-sdk';
 import config from 'config';
 import { v4} from 'uuid';
 import { UploadedFile } from "express-fileupload";
+import path from 'path';
 
 const s3 = new S3({
     accessKeyId: config.get<string>('s3.accessKeyId'),
@@ -18,12 +19,15 @@ export default async function uploadImage(req: Request, res: Response, next: Nex
 
         const params = {
             Bucket: config.get<string>('s3.bucket'),
-            Key: v4(),
+            Key: `${v4()}${path.extname(image.name)}`,
             Body: image.data,
             ACL: "public-read",
         };
         const data = await s3.upload(params).promise();
-        req.body.imageName = data.Location;
+        // req.body.imageName = data.Location;
+        // in 2nd thought this is better
+        // we then have to concat the endpoint+bucket
+        req.body.imageName = `${v4()}${path.extname(image.name)}`;
         return next()
     
     } catch (err) {
