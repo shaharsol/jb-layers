@@ -17,17 +17,20 @@ export default async function uploadImage(req: Request, res: Response, next: Nex
     try {
         const image = req.body.image as UploadedFile;
 
+        const imageName = `${v4()}${path.extname(image.name)}`;
         const params = {
             Bucket: config.get<string>('s3.bucket'),
-            Key: `${v4()}${path.extname(image.name)}`,
+            Key: imageName,
             Body: image.data,
             ACL: "public-read",
+            ContentType: image.mimetype
         };
         const data = await s3.upload(params).promise();
+        console.log(data.Location)
         // req.body.imageName = data.Location;
         // in 2nd thought this is better
         // we then have to concat the endpoint+bucket
-        req.body.imageName = `${v4()}${path.extname(image.name)}`;
+        req.body.imageName = imageName;
         return next()
     
     } catch (err) {
