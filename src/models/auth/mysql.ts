@@ -3,9 +3,9 @@ import CredentialsDTO from "./credentials-dto";
 import UserDTO from './user-dto';
 import query from '../../db/mysql'
 import Model from './model';
-import { createHash } from 'crypto';
 import config from 'config';
 import { sign } from 'jsonwebtoken';
+import { hashPassword } from '../../utils/crypto';
 
 class Auth implements Model{
     private async getOne(id: number): Promise<UserDTO> {
@@ -19,10 +19,6 @@ class Auth implements Model{
             where   userId = ?
         `, [ id ])
         return data[0];
-    }
-
-    private hashPassword (plainTextPassword): string {
-        return createHash('md5').update(`${plainTextPassword}${config.get<string>('app.secret')}`).digest("hex")
     }
 
     private generateJWT(user: UserDTO): string {
@@ -42,7 +38,7 @@ class Auth implements Model{
 
     public async signup(user: UserDTO): Promise<string> {
         const { username, password, firstName, lastName } = user;
-        const hashedPassword = this.hashPassword(password)
+        const hashedPassword = hashPassword(password, config.get<string>('app.secret'))
         const packet: OkPacketParams = await query(`
             insert into users(username, password, firstName, lastName, roleId) values(?,?,?,?,1)
         `, [username, hashedPassword, firstName, lastName])
@@ -52,7 +48,7 @@ class Auth implements Model{
 
     public async login(credentials: CredentialsDTO): Promise<string | null> {
         const { username, password } = credentials;
-        const hashedPassword = this.hashPassword(password);
+        const hashedPassword = hashPassword(password, config.get<string>('app.secret'));
         const user: UserDTO = await query(`
             select  userId as id,
                     username,
