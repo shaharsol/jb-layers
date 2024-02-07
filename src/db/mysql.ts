@@ -15,7 +15,7 @@ const pool = mysql.createPool({
     // queueLimit: 0,
 });
 
-console.log('pool created')
+// console.log('pool created')
 
 const query = promisify(pool.query).bind(pool);
 export default query

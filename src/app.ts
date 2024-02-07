@@ -3,6 +3,7 @@
 // console.log(path.resolve('./'))
 // console.log(process.env.NODE_ENV)
 process.env["NODE_CONFIG_DIR"] = __dirname + "/config/";
+
 import express from 'express';
 import productsRouter from './routes/products'
 import categoriesRouter from './routes/categories'
@@ -21,6 +22,5 @@ server.use('/categories', categoriesRouter)
 
 server.use(notFound)
 server.use(errorHandler)
-server.listen(config.get<number>('app.port'), () => {
-    console.log(`server listening on http://localhost:${config.get<number>('app.port')}`)
-})
+
+export default server;
