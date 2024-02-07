@@ -3,7 +3,7 @@ import { promisify } from 'util';
 import {Request, Response, NextFunction } from 'express';
 import config from 'config'
 
-const pool = mysql.createPool({
+export const pool = mysql.createPool({
     host: config.get<string>('mysql.host'),
     user: config.get<string>('mysql.user'),
     password: config.get<string>('mysql.password'),

@@ -5,7 +5,7 @@
     "scripts": {
         "sta": "tsc && nodemon build/app.js",
         "start": "nodemon --exec ts-node src/server.ts",
-        "test": "jest"
+        "test": "jest --verbose"
     },
     "keywords": [],
     "author": "",
