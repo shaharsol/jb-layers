@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import addImageToBody from './add-image-to-body';
 import { v4 } from 'uuid';
 
@@ -12,7 +12,7 @@ describe('add-image-to-body', () => {
             }
         } as unknown as Request;
         const res = {} as Response;
-        const next = jest.fn(() => {});
+        const next = jest.fn(() => {}) as NextFunction;
         addImageToBody(req, res, next);
         expect(req.body.image).toEqual(req.files.image)
     })
