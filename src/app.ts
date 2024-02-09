@@ -10,8 +10,6 @@ import authRouter from './routes/auth'
 import morgan from 'morgan'
 import errorHandler from './middlewares/error-handler'
 import notFound from './middlewares/not-found'
-import path from 'path'
-// process.env['NODE_CONFIG_DIR'] = __dirname + "/config/"
 
 const server = express()
 server.use(morgan('dev'))
