@@ -1,5 +1,5 @@
-import credentialsDTO from "./credentials-dto";
-import UserDTO from './user-dto';
+import credentialsDTO from './credentials-dto'
+import UserDTO from './user-dto'
 
 export default interface Model {
     signup(user: UserDTO): Promise<string>;

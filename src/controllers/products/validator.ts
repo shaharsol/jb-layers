@@ -1,5 +1,5 @@
-import joi from 'joi';
-import DTO from '../../models/product/dto';
+import joi from 'joi'
+import DTO from '../../models/product/dto'
 
 export const newProductValidator = joi.object<DTO>({
     name: joi.string().required(),
@@ -8,4 +8,4 @@ export const newProductValidator = joi.object<DTO>({
     image: joi.object({
         mimetype: joi.string().valid('image/png', 'image/jpg')
     }).unknown(true).optional()
-});
+})

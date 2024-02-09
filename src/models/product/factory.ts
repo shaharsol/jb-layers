@@ -1,7 +1,6 @@
-import Model from "./model";
-import product from "./mysql";
+import Model from './model'
+import product from './mysql'
 
-
-export default function getModel(): Model {
-    return product;
+export default function getModel (): Model {
+    return product
 }

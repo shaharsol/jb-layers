@@ -1,4 +1,4 @@
-import { UploadedFile } from "express-fileupload";
+import { UploadedFile } from 'express-fileupload'
 
 export default interface DTO {
     id: number;
