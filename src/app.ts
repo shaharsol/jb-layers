@@ -2,6 +2,7 @@
 // console.log(__dirname)
 // console.log(path.resolve('./'))
 // console.log(process.env.NODE_ENV)
+// npm init @eslint/config
 // lint all : npx eslint . --fix --ext .ts
 import express from 'express'
 import productsRouter from './routes/products'
