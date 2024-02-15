@@ -13,8 +13,8 @@ export async function getAll (req: Request, res: Response, next: NextFunction) {
 
 export async function getOne (req: Request, res: Response, next: NextFunction) {
     try {
-        const products = await getModel().getOne(+req.params.id)
-        res.json(products)
+        const product = await getModel().getOne(+req.params.id)
+        res.json(product)
     } catch (err) {
         next(err)
     }

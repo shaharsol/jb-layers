@@ -6,8 +6,22 @@ describe('test products router', () => {
     afterAll(() => {
         pool.end()
     })
-    describe('test / endpoint', () => {
+    // integration test
+    describe('test /api/products endpoint', () => {
         it('should return an array of products', async () => {
+            const res = await request(server).get('/api/products')
+            expect(res.statusCode).toBe(200)
+            expect(Array.isArray(res.body)).toBeTruthy()
+            expect(res.body[0]).toHaveProperty('id')
+            expect(res.body[0]).toHaveProperty('name')
+            expect(res.body[0]).toHaveProperty('price')
+            expect(res.body[0]).toHaveProperty('stock')
+            expect(res.body[0]).toHaveProperty('imageName')
+        })
+    })
+    // unit test
+    describe('test /api/products/1 endpoint', () => {
+        it('should return single product with id=1', async () => {
             const res = await request(server).get('/api/products')
             expect(res.statusCode).toBe(200)
             expect(Array.isArray(res.body)).toBeTruthy()
