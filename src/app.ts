@@ -4,6 +4,9 @@
 // console.log(process.env.NODE_ENV)
 // npm init @eslint/config
 // lint all : npx eslint . --fix --ext .ts
+// import path from 'path'
+process.env.NODE_CONFIG_DIR = __dirname + '/config'
+/* eslint-disable import/first */
 import express from 'express'
 import productsRouter from './routes/products'
 import categoriesRouter from './routes/categories'

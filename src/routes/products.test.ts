@@ -8,7 +8,7 @@ describe('test products router', () => {
     })
     describe('test / endpoint', () => {
         it('should return an array of products', async () => {
-            const res = await request(server).get('/products')
+            const res = await request(server).get('/api/products')
             expect(res.statusCode).toBe(200)
             expect(Array.isArray(res.body)).toBeTruthy()
             expect(res.body[0]).toHaveProperty('id')

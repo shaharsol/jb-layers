@@ -12,7 +12,7 @@ describe('add-image-to-body', () => {
             }
         } as unknown as Request
         const res = {} as Response
-        const next = jest.fn(() => {}) as NextFunction
+        const next = (() => {}) as NextFunction
         addImageToBody(req, res, next)
         expect(req.body.image).toEqual(req.files.image)
     })
