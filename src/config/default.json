@@ -7,7 +7,8 @@
         "host": "localhost",
         "user": "shaharsol",
         "password": "password",
-        "database": "northwind"
+        "database": "northwind",
+        "port": 3306
     },
     "s3": {
         "accessKeyId": "na",
